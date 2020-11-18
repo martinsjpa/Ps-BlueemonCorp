@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CadastroService } from 'src/app/services/cadastro.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -9,9 +10,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CadastroComponent implements OnInit {
 
   form: FormGroup;
-  constructor() { }
+  constructor(private cadastroService:CadastroService) { }
 
   ngOnInit(): void {
+    this.getEmployee();
     this.initFormGroup();
     
 
@@ -27,6 +29,18 @@ export class CadastroComponent implements OnInit {
       dataNasc: new FormControl(null,Validators.required)
     });
 
+  }
+
+    getEmployee() {
+    this.cadastroService.get().subscribe(
+      (response) => {
+        let rawData = response;
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
 }

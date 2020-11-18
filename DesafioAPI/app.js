@@ -19,7 +19,7 @@ app.use(express.json());
 
 /* Define quem pode solicitar chamadas para api */
 app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "http://http//localhost:4200");
+    res.header("Access-Control-Allow-Origin", "http://localhost:4200");
     res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
     app.use(cors());
     next();
