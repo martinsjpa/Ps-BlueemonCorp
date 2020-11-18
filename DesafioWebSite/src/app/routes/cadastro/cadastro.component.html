@@ -1,56 +1,139 @@
-<ng-container>
+<div class="col-12">
 
 
-    <div class="row">
-        <div class="col-12 col-sm-6 mb-3 mb-md-0">
-            <h3 class="text-blue">Cadastro</h3>
-        </div>
-    </div>
 
     <div class="b bg-white px-4 py-3">
-        <form [formGroup]="form">
-            <div class="row pt-4">
-
-                <div class="col-12 col-md-6 mb-5">
-                    <label class="text-bold" for="nome">Nome</label>
-                    <input class="form-control" name="nome" type="text" formControlName="nome" />
-                </div>
-
-                <div class="col-12 col-md-6 mb-5">
-                    <label class="text-bold" for="email">Email </label>
-                    <input class="form-control" name="email" type="text" formControlName="email" />
-                </div>
-
-                <div class="col-12 col-md-6 mb-5">
-                    <label class="text-bold" for="cpf">CPF</label>
-                    <input class="form-control" name="cpf" type="text" formControlName="cpf" />
-                </div>
-
-                <div class="col-12 col-md-6 mb-5">
-                    <label class="text-bold" for="salario">Salário </label>
-                    <input class="form-control" name="salario" type="text" formControlName="salario" />
-                </div>
-
-                <div class="col-12 col-md-6 pt-4">
-                    <label for="datanasc" class="text-bold">Data de Nascimento</label>
-                    <input type="text" placeholder="Datepicker" class="form-control" formControlName="dataNasc"
-                        bsDatepicker
-                        [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
+        <div class="row">
 
 
-                </div>
+            <div class="col-4 br">
+                <form [formGroup]="form">
+                    <div class="row mt-2">
+                        <h3 class="text-blue align-self-center ml-2 pl-1 mb-4">Employee</h3>
 
-                <div class="col-12">
-                    <button class="btn btn-blue" [disabled]="!form.valid">
-                        <span>Cadastrar</span>
-                    </button>
+                        <div class="col-12">
+                            <label class="text-bold" for="nome">Nome</label>
+                            <input class="form-control" name="nome" type="text" formControlName="nome" />
+                        </div>
 
-                </div>
+                        <div class="col-12 mt-2">
+                            <label class="text-bold" for="email">Email </label>
+                            <input class="form-control" name="email" type="text" formControlName="email" />
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <label class="text-bold" for="cpf">CPF</label>
+                            <input class="form-control" name="cpf" type="text" formControlName="cpf" />
+                        </div>
+
+                        <div class="col-12 mt-2">
+                            <label class="text-bold" for="salario">Salário </label>
+                            <input class="form-control" name="salario" type="text" formControlName="salario" />
+                        </div>
+
+                        <div class="col-12 mt-4 mb-4">
+                            <label for="datanasc" class="text-bold">Data de Nascimento</label>
+                            <input type="text" class="form-control" formControlName="dataNasc" bsDatepicker
+                                [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
+
+                        </div>
+                        <div class="col-12 ">
+                            <hr class="bb">
+                        </div>
+                        <div class="col-12 mt-4 text-center">
+                            <button class="btn btn-primary" [disabled]="!form.valid">
+                                <span>Cadastrar</span>
+                            </button>
+
+                        </div>
+
+
+
+                    </div>
+
+                </form>
 
             </div>
 
-        </form>
+            <div class="col-8 mt-5 pt-5">
+
+                <div class="list-group">
+                    <!--Labels-->
+                    <div class="list-group-item first-item text-left list-group-item-light text-white d-md-block" style="background: #307FE2;">
+                        <div class="row ml-0">
+
+                            <!--Position-->
+                            <div class="col-12 col-md-2">
+                                Nome
+                            </div>
+
+                            <!--Integration Code-->
+                            <div class="col-12 col-md-3">
+                                Email
+                            </div>
+
+                            <!--Status-->
+                            <div class="col-12 col-md-2">
+                                Cpf
+                            </div>
+
+                            <!--Buttons-->
+                            <div class="col-12 col-md-2">
+                                Salario
+                            </div>
+
+                            <div class="col-12 col-md-2 text-nowrap">
+                                Data de Nascimento
+                            </div>
+                            
+
+                        </div>
+                    </div>
+
+                    <!--Content-->
+                    <div class="list-group-item list-group-item-action text-left">
+                        <div class="row ml-0">
+
+                            <div class="col-12 col-md-2">
+                                Nome
+                            </div>
+
+                            <!--Integration Code-->
+                            <div class="col-12 col-md-3">
+                                Email
+                            </div>
+
+                            <!--Status-->
+                            <div class="col-12 col-md-2">
+                                Cpf
+                            </div>
+
+                            <!--Buttons-->
+                            <div class="col-12 col-md-2">
+                                Salario
+                            </div>
+
+                            <div class="col-12 col-md-2 text-nowrap">
+                                Data de nascimento
+                            </div>
+
+                            <div class="col-12 col-md-1 align-self-center  text-center pr-0">
+                                <i class="fas fa-trash text-blue" style="cursor:pointer"></i>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
     </div>
 
-
-<ng-container>
+</div>

@@ -7,11 +7,13 @@ import { CadastroComponent } from './routes/cadastro/cadastro.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {CadastroService} from './services/cadastro.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './layout/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
