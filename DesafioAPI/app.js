@@ -28,6 +28,7 @@ app.use((req, res, next) => {
 /* Const para Acessar a Tabela Employee do Banco de dados  */
 const Employee = mongoose.model('employee');
 
+/* Inicializa a conexão com o banco e cria/seleciona a database cadastro */
 mongoose.connect('mongodb://127.0.0.1/cadastro', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -44,7 +45,7 @@ mongoose.connect('mongodb://127.0.0.1/cadastro', {
 
 
 
-
+/*Define a porta que será inicializada a API*/
 app.listen(8080, ()=> {
     console.log('servidor iniciado na porta 8080');
 })
