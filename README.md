@@ -15,7 +15,7 @@ Obs: caso não tenha o nodejs / npm instalado instale utilizando essa video aula
 11. Verifique no back-end(visual studio code que está aberto a pasta DesafioApi na linha 23 do arquivo app.js se o localhost que está lá é o mesmo que o do seu front. se não basta seguir o tutorial que está na linha 22 e efetuar a troca.
 **obs:esse processo é necessário para a segurança da API e dos dados**
 12. Após a verificação e conclusão do passo 11, digite node app.js **pronto seu back-end está funcionando e seu front-end já conseguirá comunicar com ele**
-#Pronto, está rodando o seu projeto basta utilizar as funcionalidades do site!!!
+<p>Pronto, está rodando o seu projeto basta utilizar as funcionalidades do site!!!
 
 
 
