@@ -1,10 +1,7 @@
 //COLORS
-$grey: #454647;
 $blue: #054483;
 $grey-light: #D3D3D3;
 $red: #f05050;
-$gray-lighter:          #edf1f2;
-$body-color:                #656565;
 $border-color: rgba(0,0,0,.12);
 
 // Text COLORS
@@ -12,33 +9,21 @@ $border-color: rgba(0,0,0,.12);
 .text-blue {
     color: $blue;
 }
-.text-grey {
-    color: $grey;
-}
 .text-red {
     color: $red;
 }
 
 
-//
-@mixin make-bg($bgcolor, $text-color: #fff) {
-    background-color: $bgcolor;
-    color: $text-color !important;
-  }
+
 
 //BUTTONS HOVER
 $button-blue-hover: #176fe3;
-$button-grey-hover: #404142;
-$button-grey-light-hover: #D9D9D9;
 
 // Backgrounds
 .bg-blue {
     background-color: $blue;
 }
 
-.bg-grey-light {
-    background-color: $button-grey-light-hover;
-}
 
 
 //Separadores
@@ -48,7 +33,6 @@ $button-grey-light-hover: #D9D9D9;
 .bt { border-top: 1px solid $border-color;}
 .bb { border-bottom: 1px solid $border-color;}
 
-.bg-gray-lighter { @include make-bg($gray-lighter, $body-color); }
 
 //Text type
 
@@ -58,26 +42,27 @@ $button-grey-light-hover: #D9D9D9;
 
 
 
-// Font
+/* heading tags */
 
 h1,h2,h3,h4 {
     font-weight: bold;
+}
+.h3, h3 {
+    font-size: 24px;
 }
 
 h1,h2,h3,h4,h5,h6,
 .h1,.h2,.h3,.h4,.h5,.h6 {
     margin-bottom: 0.65625rem;
 }
-// Body
 
-body {
-    font-family: "Source Sans Pro", sans-serif;
-    color: $body-color;
-    font-size: 0.875rem; // 14px
+
+/* Body */
+body{
+    background-color: #f5f5f5!important;
 }
 
-
-//BUTTONS
+/* Buttons */
 
 .btn {
     border-radius: 0;
@@ -90,34 +75,45 @@ body {
 
 
 .btn-blue {
-    background-color: $grey;
-    color: #307FE2;
+    background-color: $blue!important;
+    color: $blue!important;
 
-    &:hover, &:focus {
-        color:#307FE2;
-        background-color: $button-blue-hover;
-    }
+   
 }
 
 
-//Circles
+/* Circles */
 
 
 .circle-black{
     width: 31px;
     height: 29px;
-    border-radius: 50%;
-    background-color: #454647;
+    border-radius: 50%!important;
+    background-color: #454647!important;
 
 }
 .circle-red{
     width: 31px;
     height: 29px;
-    border-radius: 50%;
-    background-color: #F05050;
+    border-radius: 50%!important;
+    background-color: #F05050!important;
 }
 
-// datapicker
+/* Icons Aligns */
+
+.fa-pen:before {
+    position: relative; 
+    top: -6px; 
+    right: 2px;
+}
+.fa-trash:before{
+    position: relative; 
+    top: -6px; 
+    right: 2px;
+
+}
+
+/*Datapicker*/
 
 .theme-blue .bs-datepicker-head {
     background-color: #054483;
@@ -125,4 +121,25 @@ body {
 
 .theme-blue .bs-datepicker-body table td.week span {
     color: #054483;
+}
+
+/* navbar */
+
+.navbar {
+    height: 53px;
+}
+
+/* Logo*/
+.logo{
+    height: 26px;
+}
+
+/* List Group*/
+
+.list-group-item{
+    background: #F8F8F8;
+}
+
+.list-group-item.first-item {
+    background: #F8F8F8;
 }

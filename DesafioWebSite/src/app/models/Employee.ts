@@ -4,6 +4,6 @@ export class Employee
     nome: string;
     email:string;
     cpf:string;
-    salario: number;
-    dataNasc:string;
+    dateBirth:string;
+    salary: number;
 }

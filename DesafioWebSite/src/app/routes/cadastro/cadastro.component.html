@@ -1,216 +1,254 @@
 <div class="col-12 px-4">
-
-
+    <!--Background-->
     <div class="b bg-white px-4 py-3">
+        
         <div class="row">
+           
             <div class="col-12 px-3">
-
+                <!--Start Form-->
                 <form [formGroup]="form">
                     <div class="row mt-2">
-                        <div class="col-6">
-                            <h3 class="text-blue" style="font-size: 24px;">Colaboradores</h3>
-                        </div>
-                        <div class="col-6 text-right">
-                            <button class="btn" (click)="employeeCreate = !employeeCreate "style="font-size: 14px;background: #054483;">
 
-                                <span class="text-white text-bold" >
-                                    <i class="fas fa-angle-down pr-2" [ngClass]="{'fa-angle-down': !employeeCreate, 'fa-angle-up':employeeCreate}"></i>
+                        <!--Header-->
+                        <div class="col-6">
+                            <h3 class="text-blue">Colaboradores</h3>
+                        </div>
+
+                        <!--Button new employee-->
+                        <div class="col-6 text-right">
+                            <button class="btn btn-blue" (click)="employeeCreate = !employeeCreate ">
+                                <span class="text-white text-bold">
+                                    <i class="fas fa-angle-down pr-2"
+                                        [ngClass]="{'fa-angle-down': !employeeCreate, 'fa-angle-up':employeeCreate}"></i>
                                     Novo Colaborador
                                 </span>
                             </button>
                         </div>
 
+
+                        <!--Inputs new employee-->
                         <div class="col-12 mt-4" *ngIf="employeeCreate">
+                            
                             <div class="card">
+                                <!--Init Card-->
                                 <div class="card-body">
+
                                     <div class="row">
+
+                                        <!--Input name-->
                                         <div class="col-2">
                                             <label class="text-bold" for="nome">Nome</label>
                                             <input class="form-control" name="nome" type="text"
                                                 formControlName="nome" />
                                         </div>
 
+                                        <!--Input email-->
                                         <div class="col-2">
                                             <label class="text-bold" for="email">Email </label>
                                             <input class="form-control" name="email" type="text"
                                                 formControlName="email" />
                                         </div>
 
+                                        <!--Input Cpf-->
                                         <div class="col-2">
                                             <label class="text-bold" for="cpf">CPF</label>
                                             <input class="form-control" name="cpf" type="text" formControlName="cpf" />
                                         </div>
 
+                                        <!--Input Salary-->
                                         <div class="col-2">
                                             <label class="text-bold" for="salario">Salário </label>
-                                            <input class="form-control" name="salario" type="text"
-                                                formControlName="salario" />
+                                            <input class="form-control" name="salario" type="number"
+                                                formControlName="salary" />
                                         </div>
 
+                                        <!--Input DateBirth-->
                                         <div class="col-2">
                                             <label for="datanasc" class="text-bold">Data de Nascimento</label>
-                                            <input type="text" class="form-control" formControlName="dataNasc"
+                                            <input type="text" class="form-control" formControlName="dateBirth"
                                                 bsDatepicker
-                                                [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY', dateOutputFormat:'DD/MM/YYY'}">
+                                                [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
 
                                         </div>
 
+                                        <!--Button create Employee-->
                                         <div class="col-2 align-self-center pt-4 mt-2">
-                                            <button class="btn ml-3" (click)="createEmployee()" [disabled]="!form.valid" style="background: #054483;">
+                                            <button class="btn btn-blue ml-3" (click)="createEmployee()"
+                                                [disabled]="!form.valid">
                                                 <span class="text-white text-bold mx-3">Cadastrar</span>
                                             </button>
-                                            
+
                                         </div>
+
                                     </div>
 
                                 </div>
+
+                                <!--End card-->
                             </div>
+
                         </div>
+                        <!--End inputs Employee-->
+
                     </div>
 
                 </form>
 
-
+                <!--Start list Group-->
                 <div class="list-group mt-4">
                     <!--Labels-->
-                    <div class="list-group-item first-item text-left text-bold d-md-block"
-                        style="background: #F8F8F8;">
+                    <div class="list-group-item first-item text-left text-bold d-md-block">
                         <div class="row ml-0">
-    
-                            <!--Position-->
+
+                            <!--Name-->
                             <div class="col-12 col-md-3">
                                 Nome
                             </div>
-    
-                            <!--Integration Code-->
+
+                            <!--Email-->
                             <div class="col-12 col-md-3">
                                 Email
                             </div>
-    
-                            <!--Status-->
+
+                            <!--Cpf-->
                             <div class="col-12 col-md-2">
                                 CPF
                             </div>
-    
-                            <!--Buttons-->
+
+                            <!--Salary-->
                             <div class="col-12 col-md-1">
                                 Salario
                             </div>
-    
+
+                            <!--DateBirth-->
                             <div class="col-12 col-md-2 text-nowrap">
                                 Data de Nascimento
                             </div>
 
+                            <!--Actions-->
                             <div class="col-12 col-md-1 text-nowrap">
                                 Ações
                             </div>
-    
-    
+
+
                         </div>
                     </div>
-    
+
                     <!--Content-->
                     <div *ngFor="let employee of employees" class="list-group-item list-group-item-action text-left">
                         <div class="row ml-0">
-    
-                            <div class="col-12 col-md-3" (click)="openModalEditEmployee(employee)">
+
+                            <!--Name-->
+                            <div class="col-12 col-md-3">
                                 {{employee.nome}}
                             </div>
-    
-                            <!--Integration Code-->
+
+                            <!--Email-->
                             <div class="col-12 col-md-3">
                                 {{employee.email}}
                             </div>
-    
-                            <!--Status-->
+
+                            <!--Cpf-->
                             <div class="col-12 col-md-2">
                                 {{employee.cpf}}
                             </div>
-    
-                            <!--Buttons-->
+
+                            <!--Salary-->
                             <div class="col-12 col-md-1">
-                                {{employee.salario}}
+                                {{employee.salary}}
                             </div>
-    
+
+                            <!--DateBirth-->
                             <div class="col-12 col-md-2 text-nowrap">
-                                {{employee.dataNasc}}
+                                {{employee.dateBirth}}
                             </div>
-    
+
+                            <!--Actions-->
                             <div class="col-12 col-md-1 align-self-center pr-0">
-                                    
-                                <button class="btn circle-black mr-2" type="button">
-                                        <em class="fas fa-pen fa-xs text-white"
-                                            style="position: relative; top: -6px; right: 2px;"></em>
-                                    </button>
-                                    <button class="btn circle-red mr-2" type="button" (click)="deleteEmployee(employee)">
-                                        <em class="fas fa-trash fa-xs text-white"
-                                            style="position: relative; top: -6px; right: 2px;"></em>
-                                    </button>
+
+                                <button class="btn circle-black mr-2" type="button"
+                                    (click)="openModalEditEmployee(employee)">
+                                    <em class="fas fa-pen fa-xs text-white">
+                                    </em>
+                                </button>
+                                <button class="btn circle-red mr-2" type="button" (click)="deleteEmployee(employee)">
+                                    <em class="fas fa-trash fa-xs text-white">
+                                    </em>
+                                </button>
 
                             </div>
-    
+
                         </div>
-    
+
                     </div>
-    
+
                 </div>
+
             </div>
 
-            
-
         </div>
+
     </div>
 
 </div>
 
 
 
-
+<!--Start Modal-->
 <ng-template #modalEditEmployee>
+    <!--Modal Header-->
     <div class="modal-header">
         <h3 class="modal-title text-blue">Edit Employee</h3>
         <button type="button" class="close" aria-label="Close" (click)="closeModal(modalEditEmployeeRef)">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-
+    
+    <!--Modal Body-->
     <div class="modal-body">
+        <!--Init form Edit employee and Inputs-->
         <form [formGroup]="formEdit">
-
-
+            <!--Name-->
             <div class="col-12">
                 <label class="text-bold" for="nome">Nome</label>
                 <input class="form-control" name="nome" type="text" formControlName="nome" />
             </div>
 
+            <!--Email-->
             <div class="col-12 mt-2">
                 <label class="text-bold" for="email">Email </label>
                 <input class="form-control" name="email" type="text" formControlName="email" />
             </div>
-
+            
+            <!--Cpf-->
             <div class="col-12 mt-2">
                 <label class="text-bold" for="cpf">CPF</label>
                 <input class="form-control" name="cpf" type="text" formControlName="cpf" />
             </div>
 
+            <!--Salary-->
             <div class="col-12 mt-2">
                 <label class="text-bold" for="salario">Salário </label>
-                <input class="form-control" name="salario" type="text" formControlName="salario" />
+                <input class="form-control" name="salario" type="text" formControlName="salary" />
             </div>
 
+            <!--BirthDate-->
             <div class="col-12 mt-4 mb-4">
                 <label for="datanasc" class="text-bold">Data de Nascimento</label>
-                <input type="text" class="form-control" formControlName="dataNasc" bsDatepicker
+                <input type="text" class="form-control" formControlName="dateBirth" bsDatepicker
                     [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
-
             </div>
-
+            <!--Separator-->
             <hr class="bb mx-0 px-0">
 
+            <!--Button Save-->
             <div class="col-12 text-center mt-4">
-                <button placement="bottom" class="btn btn-primary" (click)="editEmployee()">Save</button>
+                <button placement="bottom" class="btn btn-blue text-white" (click)="editEmployee()">Save</button>
             </div>
 
         </form>
+        <!--End Form edit employee-->
     </div>
+
 </ng-template>
+<!--End Modal-->

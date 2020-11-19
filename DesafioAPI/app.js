@@ -19,6 +19,7 @@ app.use(express.json());
 
 /* Define quem pode solicitar chamadas para api */
 app.use((req, res, next) => {
+    //Troque http://localhost:4200 pelo endereço de acesso do seu front end não colouqe / no final
     res.header("Access-Control-Allow-Origin", "http://localhost:4200");
     res.header("Access-Control-Allow-Methods", 'GET,PUT,POST,DELETE');
     app.use(cors());
@@ -50,6 +51,7 @@ app.listen(8080, ()=> {
     console.log('servidor iniciado na porta 8080');
 })
 
+/*Faz um selectAll na tabela de employee no MongoDb  */
 app.get("/getEmployee", (req, res) =>{
     Employee.find({}).then((employee) => {
         return res.json(employee);
@@ -61,6 +63,7 @@ app.get("/getEmployee", (req, res) =>{
     })
 });
 
+/* Insere novo colaborador na tabela employee no MongoDb */
 app.post("/saveEmployee", (req,res) => {
     const employee = Employee.create(req.body, (error) => {
         if(error)
@@ -77,6 +80,7 @@ app.post("/saveEmployee", (req,res) => {
     });
 })
 
+/* Atualiza os dados de um colaborador na Tabela employee no MongoDB */
 app.put("/editEmployee/:id", (req,res) => {
     const employee = Employee.updateOne({ _id: req.params.id}, req.body, (error) => {
         if(error)
@@ -93,6 +97,7 @@ app.put("/editEmployee/:id", (req,res) => {
     })
 })
 
+/* Deleta um colaborador na tabela employee no MongoDB */
 app.delete("/deleteEmployee/:id", (req,res) => {
     const employee = Employee.deleteOne({ _id: req.params.id}, req.body, (error) => {
         if(error)

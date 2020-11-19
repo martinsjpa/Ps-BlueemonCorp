@@ -5,7 +5,6 @@ import {Employee} from 'src/app/models/Employee'
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import Swal from "sweetalert2";
 import { Router } from '@angular/router';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
@@ -14,17 +13,24 @@ import { formatDate } from '@angular/common';
 })
 export class CadastroComponent implements OnInit {
 
+  // formulário criação de colaborador
   form: FormGroup;
+  // formulário edição de colaborador
   formEdit: FormGroup;
 
-  employeeCreate = false;
-  employeeEdit = false;
 
+  // varíavel responsável por alterar o estado de visualização da criação de colaborador
+  employeeCreate = false;
+
+  // variável responsável por guardar todos os colaboradores
   employees: Array<Employee> = new Array<Employee>();
 
+  // variável que auxilia na edição do employee
   employeeId: string = null;
 
+  //ViewChild para a modal
   @ViewChild('modalEditEmployee', { static: false }) modalEditEmployee: TemplateRef<any>;
+  // Referencia para a modal
   modalEditEmployeeRef: BsModalRef;
   constructor(private cadastroService:CadastroService, private modalService: BsModalService,private router: Router)  { }
 
@@ -35,52 +41,57 @@ export class CadastroComponent implements OnInit {
 
   }
 
+  /**Inicia o formulário de criação de colaborador */ 
   initFormGroupCreate()
   {
     this.form = new FormGroup({
       nome: new FormControl(null,Validators.required),
       email: new FormControl(null,Validators.required),
       cpf: new FormControl(null,Validators.required),
-      salario: new FormControl(null,Validators.required),
-      dataNasc: new FormControl(null,Validators.required)
+      salary: new FormControl(null,Validators.required),
+      dateBirth: new FormControl(null,Validators.required)
     });
 
   }
+
+  /**Inicia o formulário de edição de colaborador */ 
   initFormGroupEdit(employee:Employee)
   {
     this.formEdit = new FormGroup({
       nome: new FormControl(employee.nome,Validators.required),
       email: new FormControl(employee.email,Validators.required),
       cpf: new FormControl(employee.cpf,Validators.required),
-      salario: new FormControl(employee.salario,Validators.required),
-      dataNasc: new FormControl(employee.dataNasc,Validators.required)
+      salary: new FormControl(employee.salary,Validators.required),
+      dateBirth: new FormControl(employee.dateBirth,Validators.required)
     });
   }
 
+    /**Faz a chamada para a Api e recebe todos os colaboradores */ 
     getEmployee() {
     this.cadastroService.get().subscribe(
       (response) => {
         Object.assign(this.employees, response);
       },
       (error) => {
-        console.log(error);
+        Swal.fire('Error', 'Não foi possível Carregar os Colaboradores', 'error');
       }
     );
   }
-
+  /**Envia para a Api o novo colaborador para que ela faça a criação */ 
   createEmployee() {
-    debugger
     let employeeForm = this.form.value as Employee;
+    employeeForm.dateBirth = new Date(employeeForm.dateBirth).toLocaleDateString();
     this.cadastroService.save(employeeForm).subscribe(
       (response) => {
         Swal.fire('Success', 'Colaborador Cadastrado com Sucesso', 'success');
+        this.getEmployee();
       },
       (error) => {
         Swal.fire('Error', 'Não foi possível Cadastrar o Colaborador', 'error');
       }
     );
   }
-
+  /**Envia para a Api o colaborador que foi deletado */ 
   deleteEmployee(employee: Employee) 
   {
     Swal.fire({
@@ -99,28 +110,30 @@ export class CadastroComponent implements OnInit {
         this.cadastroService.delete(employee._id).subscribe(
           (response) => {
             Swal.fire('Success', 'Colaborador Excluido com Sucesso', 'success');
-            this.router.navigate(['/']);
+
             
           },
           (error) => {
             Swal.fire('Error', 'Não foi possível Excluir o Colaborador', 'error');
           }
         );
-        this.router.navigate(['/']);
+        this.getEmployee();
       }
+      this.getEmployee();
     });
-    
-    
-    
+
   }
 
+  /**Envia para a api o colaborador que foi editado e suas alterações */ 
   editEmployee() {
+    this.closeModal(this.modalEditEmployeeRef);
+
     let employee = this.formEdit.value as Employee
     employee._id = this.employeeId;
-    debugger
     this.cadastroService.edit(employee).subscribe(
       (response) => {
         Swal.fire('Success', 'Colaborador Editado com Sucesso', 'success');
+        this.getEmployee();
       },
       (error) => {
         Swal.fire('Error', 'Não foi possível editar o Colaborador', 'error');
@@ -128,9 +141,9 @@ export class CadastroComponent implements OnInit {
     );
   }
 
+  /**Abre a modal de edição de employee */ 
   openModalEditEmployee(employee: Employee) {
-    this.employeeId = employee._id; 
-
+    this.employeeId = employee._id;
     let config = {
       keyboard: false,
       ignoreBackdropClick: true
@@ -138,7 +151,9 @@ export class CadastroComponent implements OnInit {
 
     this.modalEditEmployeeRef = this.modalService.show(this.modalEditEmployee, config);
     this.initFormGroupEdit(employee);
+
   }
+  /**Fecha a modal */ 
   closeModal(modalRef: BsModalRef)
   {
     modalRef.hide();
