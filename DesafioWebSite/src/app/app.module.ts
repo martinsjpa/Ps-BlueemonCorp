@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {CadastroService} from './services/cadastro.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layout/navbar/navbar.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,11 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     BsDatepickerModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    TooltipModule.forRoot(),
     
   ],
-  providers: [CadastroService],
+  providers: [CadastroService, BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

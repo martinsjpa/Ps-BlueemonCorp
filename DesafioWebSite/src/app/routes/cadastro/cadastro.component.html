@@ -1,139 +1,212 @@
-<div class="col-12">
-
+<div class="col-12 px-4">
 
 
     <div class="b bg-white px-4 py-3">
         <div class="row">
+            <div class="col-12 px-3">
 
-
-            <div class="col-4 br">
                 <form [formGroup]="form">
                     <div class="row mt-2">
-                        <h3 class="text-blue align-self-center ml-2 pl-1 mb-4">Employee</h3>
-
-                        <div class="col-12">
-                            <label class="text-bold" for="nome">Nome</label>
-                            <input class="form-control" name="nome" type="text" formControlName="nome" />
+                        <div class="col-6">
+                            <h3 class="text-blue" style="font-size: 24px;">Colaboradores</h3>
                         </div>
+                        <div class="col-6 text-right">
+                            <button class="btn" (click)="createEmployee()"style="font-size: 14px;background: #054483;">
 
-                        <div class="col-12 mt-2">
-                            <label class="text-bold" for="email">Email </label>
-                            <input class="form-control" name="email" type="text" formControlName="email" />
-                        </div>
-
-                        <div class="col-12 mt-2">
-                            <label class="text-bold" for="cpf">CPF</label>
-                            <input class="form-control" name="cpf" type="text" formControlName="cpf" />
-                        </div>
-
-                        <div class="col-12 mt-2">
-                            <label class="text-bold" for="salario">Salário </label>
-                            <input class="form-control" name="salario" type="text" formControlName="salario" />
-                        </div>
-
-                        <div class="col-12 mt-4 mb-4">
-                            <label for="datanasc" class="text-bold">Data de Nascimento</label>
-                            <input type="text" class="form-control" formControlName="dataNasc" bsDatepicker
-                                [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
-
-                        </div>
-                        <div class="col-12 ">
-                            <hr class="bb">
-                        </div>
-                        <div class="col-12 mt-4 text-center">
-                            <button class="btn btn-primary" [disabled]="!form.valid">
-                                <span>Cadastrar</span>
+                                <span class="text-white text-bold"><i class="fas fa-angle-up pr-2"></i>
+                                    Novo Colaborador</span>
                             </button>
-
                         </div>
 
+                        <div class="col-12 mt-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <label class="text-bold" for="nome">Nome</label>
+                                            <input class="form-control" name="nome" type="text"
+                                                formControlName="nome" />
+                                        </div>
 
+                                        <div class="col-2">
+                                            <label class="text-bold" for="email">Email </label>
+                                            <input class="form-control" name="email" type="text"
+                                                formControlName="email" />
+                                        </div>
 
+                                        <div class="col-2">
+                                            <label class="text-bold" for="cpf">CPF</label>
+                                            <input class="form-control" name="cpf" type="text" formControlName="cpf" />
+                                        </div>
+
+                                        <div class="col-2">
+                                            <label class="text-bold" for="salario">Salário </label>
+                                            <input class="form-control" name="salario" type="text"
+                                                formControlName="salario" />
+                                        </div>
+
+                                        <div class="col-2">
+                                            <label for="datanasc" class="text-bold">Data de Nascimento</label>
+                                            <input type="text" class="form-control" formControlName="dataNasc"
+                                                bsDatepicker
+                                                [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
+
+                                        </div>
+
+                                        <div class="col-2 align-self-center pt-4 mt-2">
+                                            <button class="btn ml-3" (click)="createEmployee()" [disabled]="!form.valid" style="background: #054483;">
+                                                <span class="text-white text-bold mx-3">Cadastrar</span>
+                                            </button>
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </form>
 
-            </div>
 
-            <div class="col-8 mt-5 pt-5">
-
-                <div class="list-group">
+                <div class="list-group mt-4">
                     <!--Labels-->
-                    <div class="list-group-item first-item text-left list-group-item-light text-white d-md-block" style="background: #307FE2;">
+                    <div class="list-group-item first-item text-left text-bold d-md-block"
+                        style="background: #F8F8F8;">
                         <div class="row ml-0">
-
+    
                             <!--Position-->
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-3">
                                 Nome
                             </div>
-
+    
                             <!--Integration Code-->
                             <div class="col-12 col-md-3">
                                 Email
                             </div>
-
+    
                             <!--Status-->
                             <div class="col-12 col-md-2">
-                                Cpf
+                                CPF
                             </div>
-
+    
                             <!--Buttons-->
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-1">
                                 Salario
                             </div>
-
+    
                             <div class="col-12 col-md-2 text-nowrap">
                                 Data de Nascimento
                             </div>
-                            
 
+                            <div class="col-12 col-md-1 text-nowrap">
+                                Ações
+                            </div>
+    
+    
                         </div>
                     </div>
-
+    
                     <!--Content-->
-                    <div class="list-group-item list-group-item-action text-left">
+                    <div *ngFor="let employee of employees" class="list-group-item list-group-item-action text-left">
                         <div class="row ml-0">
-
-                            <div class="col-12 col-md-2">
-                                Nome
+    
+                            <div class="col-12 col-md-3" (click)="openModalEditEmployee(employee)">
+                                {{employee.nome}}
                             </div>
-
+    
                             <!--Integration Code-->
                             <div class="col-12 col-md-3">
-                                Email
+                                {{employee.email}}
                             </div>
-
+    
                             <!--Status-->
                             <div class="col-12 col-md-2">
-                                Cpf
+                                {{employee.cpf}}
                             </div>
-
+    
                             <!--Buttons-->
-                            <div class="col-12 col-md-2">
-                                Salario
+                            <div class="col-12 col-md-1">
+                                {{employee.salario}}
                             </div>
-
+    
                             <div class="col-12 col-md-2 text-nowrap">
-                                Data de nascimento
+                                {{employee.dataNasc}}
                             </div>
-
-                            <div class="col-12 col-md-1 align-self-center  text-center pr-0">
-                                <i class="fas fa-trash text-blue" style="cursor:pointer"></i>
+    
+                            <div class="col-12 col-md-1 align-self-center pr-0">
+                                    <button class="btn circle-black mr-2" type="button">
+                                        <em class="fas fa-trash fa-xs text-white"
+                                            style="position: relative; top: -2px; right: 2px;"></em>
+                                    </button>
+                                    <button class="btn circle-red mr-2" type="button">
+                                        <em class="fas fa-trash fa-xs text-white"
+                                            style="position: relative; top: -2px; right: 2px;"></em>
+                                    </button>
                             </div>
-
+    
                         </div>
-
+    
                     </div>
-
+    
                 </div>
-
-
-
             </div>
 
-
+            
 
         </div>
     </div>
 
 </div>
+
+
+
+
+<ng-template #modalEditEmployee>
+    <div class="modal-header">
+        <h3 class="modal-title text-blue">Edit Employee</h3>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal(modalEditEmployeeRef)">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form [formGroup]="formEdit">
+
+
+            <div class="col-12">
+                <label class="text-bold" for="nome">Nome</label>
+                <input class="form-control" name="nome" type="text" formControlName="nome" />
+            </div>
+
+            <div class="col-12 mt-2">
+                <label class="text-bold" for="email">Email </label>
+                <input class="form-control" name="email" type="text" formControlName="email" />
+            </div>
+
+            <div class="col-12 mt-2">
+                <label class="text-bold" for="cpf">CPF</label>
+                <input class="form-control" name="cpf" type="text" formControlName="cpf" />
+            </div>
+
+            <div class="col-12 mt-2">
+                <label class="text-bold" for="salario">Salário </label>
+                <input class="form-control" name="salario" type="text" formControlName="salario" />
+            </div>
+
+            <div class="col-12 mt-4 mb-4">
+                <label for="datanasc" class="text-bold">Data de Nascimento</label>
+                <input type="text" class="form-control" formControlName="dataNasc" bsDatepicker
+                    [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
+
+            </div>
+
+            <hr class="bb mx-0 px-0">
+
+            <div class="col-12 text-center mt-4">
+                <button placement="bottom" class="btn btn-primary" (click)="editEmployee()">Save</button>
+            </div>
+
+        </form>
+    </div>
+</ng-template>

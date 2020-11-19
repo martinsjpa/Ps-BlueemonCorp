@@ -1,6 +1,6 @@
 //COLORS
 $grey: #454647;
-$blue: #307FE2;
+$blue: #054483;
 $grey-light: #D3D3D3;
 $red: #f05050;
 $gray-lighter:          #edf1f2;
@@ -51,7 +51,7 @@ $button-grey-light-hover: #D9D9D9;
 
 .text-nowrap { white-space: nowrap; }
 
-.text-bold   { font-weight: bold !important; }
+.text-bold   { font-weight: 500 !important; }
 
 
 
@@ -97,3 +97,29 @@ body {
 }
 
 
+//Circles
+
+
+.circle-black{
+    width: 31px;
+    height: 29px;
+    border-radius: 50%;
+    background-color: #454647;
+
+}
+.circle-red{
+    width: 31px;
+    height: 29px;
+    border-radius: 50%;
+    background-color: #F05050;
+}
+
+// datapicker
+
+.theme-blue .bs-datepicker-head {
+    background-color: #054483;
+}
+
+.theme-blue .bs-datepicker-body table td.week span {
+    color: #054483;
+}

@@ -53,7 +53,7 @@ app.get("/getEmployee", (req, res) =>{
     Employee.find({}).then((employee) => {
         return res.json(employee);
     }).catch((erro) => {
-        return res.status(400).json({
+        return res.status(200).json({
             error: true,
             message: "Nenhum artigo encontrado!"
         })
@@ -85,7 +85,7 @@ app.put("/editEmployee/:id", (req,res) => {
                 message:"Error: não foi possível editar o employee"
             });
         }
-        return res.status(400).json({
+        return res.status(200).json({
             error:false,
             message:"Employee editado com sucesso"
         });
@@ -101,7 +101,7 @@ app.delete("/deleteEmployee/:id", (req,res) => {
                 message:"Error: não foi possivel excluir o employee"
             });
         }
-        return res.status(400).json({
+        return res.status(200).json({
             error:false,
             message:"Employee Excluido com sucesso"
         });
