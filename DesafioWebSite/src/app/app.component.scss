@@ -104,12 +104,12 @@ body{
 .fa-pen:before {
     position: relative; 
     top: -6px; 
-    right: 2px;
+    right: 3px;
 }
 .fa-trash:before{
     position: relative; 
     top: -6px; 
-    right: 2px;
+    right: 3px;
 
 }
 
@@ -142,4 +142,9 @@ body{
 
 .list-group-item.first-item {
     background: #F8F8F8;
+}
+
+/*Pagination */
+.ngx-pagination .current {
+    background:#054483!important ;
 }

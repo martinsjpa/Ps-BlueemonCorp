@@ -16,7 +16,7 @@
 
                         <!--Button new employee-->
                         <div class="col-6 mt-4 mt-md-0 text-right">
-                            <button class="btn btn-blue text-nowrap" (click)="employeeCreate = !employeeCreate ">
+                            <button class="btn btn-blue text-nowrap" (click)="controlPageAndCreate()">
                                 <span class="text-white text-bold">
                                     <i class="fas fa-angle-down pr-2"
                                         [ngClass]="{'fa-angle-down': !employeeCreate, 'fa-angle-up':employeeCreate}"></i>
@@ -73,7 +73,7 @@
 
                                         <!--Button create Employee-->
                                         <div class="col-12 col-md-2 align-self-center mt-2 pt-4 mt-md-2">
-                                            <button class="btn btn-blue ml-md-3" (click)="createEmployee()"
+                                            <button class="btn btn-blue ml-md-3" (click)="saveEmployee()"
                                                 [disabled]="!form.valid">
                                                 <span class="text-white text-bold mx-3">Cadastrar</span>
                                             </button>
@@ -135,7 +135,7 @@
                     </div>
 
                     <!--Content-->
-                    <div *ngFor="let employee of employees" class="list-group-item list-group-item-action text-left px-0 px-md-0">
+                    <div *ngFor="let employee of employees | paginate: { id: 'lstPagination', itemsPerPage:itemsPage, currentPage:page, totalItems:employees.length}" class="list-group-item list-group-item-action text-left px-0 px-md-0">
                         <div class="row ml-0 ">
 
                             <!--Name-->
@@ -181,6 +181,10 @@
                         </div>
 
                     </div>
+                    <!--Pagination-->
+                    <div class="col-12 mt-4 text-center d-none d-md-block text-nowrap">
+                        <pagination-controls id="lstPagination" maxSize="5" directionLinks="true" (pageChange)="page = $event" autoHide="true" previousLabel="Anterior" nextLabel="Proximo"></pagination-controls>
+                    </div>
 
                 </div>
 
@@ -214,6 +218,13 @@
                 <input class="form-control" name="nome" type="text" formControlName="nome" />
             </div>
 
+            <!--BirthDate-->
+            <div class="col-12 mt-2 mb-4">
+                <label for="datanasc" class="text-bold">Data de Nascimento</label>
+                <input type="text" class="form-control" formControlName="dateBirth" bsDatepicker
+                    [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
+            </div>
+            
             <!--Email-->
             <div class="col-12 mt-2">
                 <label class="text-bold" for="email">Email </label>
@@ -227,17 +238,12 @@
             </div>
 
             <!--Salary-->
-            <div class="col-12 mt-2">
+            <div class="col-12 mt-2 mb-4">
                 <label class="text-bold" for="salario">Salário </label>
                 <input class="form-control" name="salario" type="text" formControlName="salary" />
             </div>
 
-            <!--BirthDate-->
-            <div class="col-12 mt-4 mb-4">
-                <label for="datanasc" class="text-bold">Data de Nascimento</label>
-                <input type="text" class="form-control" formControlName="dateBirth" bsDatepicker
-                    [bsConfig]="{ isAnimated: true, containerClass: 'theme-blue', dateInputFormat:'DD/MM/YYYY'}">
-            </div>
+            
             <!--Separator-->
             <hr class="bb mx-0 px-0">
 

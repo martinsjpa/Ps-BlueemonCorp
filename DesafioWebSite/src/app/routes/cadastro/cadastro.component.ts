@@ -22,6 +22,12 @@ export class CadastroComponent implements OnInit {
   // varíavel responsável por alterar o estado de visualização da criação de colaborador
   employeeCreate = false;
 
+  /* Responsável pela paginação da listagem de colaboradores */
+  page: number = 1;
+
+  /* Responsável por controlar a quantidade de colaboradores por pagina */
+  itemsPage: number = 7;
+
   // variável responsável por guardar todos os colaboradores
   employees: Array<Employee> = new Array<Employee>();
 
@@ -32,7 +38,7 @@ export class CadastroComponent implements OnInit {
   @ViewChild('modalEditEmployee', { static: false }) modalEditEmployee: TemplateRef<any>;
   // Referencia para a modal
   modalEditEmployeeRef: BsModalRef;
-  constructor(private cadastroService:CadastroService, private modalService: BsModalService,private router: Router)  { }
+  constructor(private cadastroService:CadastroService, private modalService: BsModalService)  { }
 
   ngOnInit(): void {
     this.getEmployee();
@@ -78,7 +84,7 @@ export class CadastroComponent implements OnInit {
     );
   }
   /**Envia para a Api o novo colaborador para que ela faça a criação */ 
-  createEmployee() {
+  saveEmployee() {
     let employeeForm = this.form.value as Employee;
     employeeForm.dateBirth = new Date(employeeForm.dateBirth).toLocaleDateString();
     this.cadastroService.save(employeeForm).subscribe(
@@ -128,7 +134,8 @@ export class CadastroComponent implements OnInit {
   editEmployee() {
     this.closeModal(this.modalEditEmployeeRef);
 
-    let employee = this.formEdit.value as Employee
+    let employee = this.formEdit.value as Employee;
+    employee.dateBirth = new Date(employee.dateBirth).toLocaleDateString();
     employee._id = this.employeeId;
     this.cadastroService.edit(employee).subscribe(
       (response) => {
@@ -157,6 +164,22 @@ export class CadastroComponent implements OnInit {
   closeModal(modalRef: BsModalRef)
   {
     modalRef.hide();
+  }
+
+  /** Controla a varíavel createEmployee e a quantidade de colaboradores por pagina */
+  controlPageAndCreate()
+  {
+    if(!this.employeeCreate){
+      this.itemsPage = 4;
+    } 
+    else{
+      this.itemsPage = 7;
+    }
+    this.employeeCreate = !this.employeeCreate;
+
+      
+
+
   }
 
 }

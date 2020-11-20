@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { Router, RouterModule } from '@angular/router';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -25,9 +25,7 @@ import { Router, RouterModule } from '@angular/router';
     BsDatepickerModule.forRoot(),
     HttpClientModule,
     TooltipModule.forRoot(),
-    RouterModule.forRoot([
-      { path: "", component: CadastroComponent}
-    ])
+    NgxPaginationModule
     
   ],
   providers: [CadastroService, BsModalService],
