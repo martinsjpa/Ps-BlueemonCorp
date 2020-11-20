@@ -10,13 +10,13 @@
                     <div class="row mt-2">
 
                         <!--Header-->
-                        <div class="col-6">
+                        <div class="col-12 col-md-6">
                             <h3 class="text-blue">Colaboradores</h3>
                         </div>
 
                         <!--Button new employee-->
-                        <div class="col-6 text-right">
-                            <button class="btn btn-blue" (click)="employeeCreate = !employeeCreate ">
+                        <div class="col-6 mt-4 mt-md-0 text-right">
+                            <button class="btn btn-blue text-nowrap" (click)="employeeCreate = !employeeCreate ">
                                 <span class="text-white text-bold">
                                     <i class="fas fa-angle-down pr-2"
                                         [ngClass]="{'fa-angle-down': !employeeCreate, 'fa-angle-up':employeeCreate}"></i>
@@ -36,34 +36,34 @@
                                     <div class="row">
 
                                         <!--Input name-->
-                                        <div class="col-2">
+                                        <div class="col-12 col-md-2">
                                             <label class="text-bold" for="nome">Nome</label>
                                             <input class="form-control" name="nome" type="text"
                                                 formControlName="nome" />
                                         </div>
 
                                         <!--Input email-->
-                                        <div class="col-2">
+                                        <div class="col-12 col-md-2 mt-3 mt-md-0">
                                             <label class="text-bold" for="email">Email </label>
                                             <input class="form-control" name="email" type="text"
                                                 formControlName="email" />
                                         </div>
 
                                         <!--Input Cpf-->
-                                        <div class="col-2">
+                                        <div class="col-12 col-md-2 mt-3 mt-md-0">
                                             <label class="text-bold" for="cpf">CPF</label>
                                             <input class="form-control" name="cpf" type="text" formControlName="cpf" />
                                         </div>
 
                                         <!--Input Salary-->
-                                        <div class="col-2">
+                                        <div class="col-12 col-md-2 mt-3 mt-md-0">
                                             <label class="text-bold" for="salario">Salário </label>
                                             <input class="form-control" name="salario" type="number"
                                                 formControlName="salary" />
                                         </div>
 
                                         <!--Input DateBirth-->
-                                        <div class="col-2">
+                                        <div class="col-12 col-md-2 mt-3 mt-md-0">
                                             <label for="datanasc" class="text-bold">Data de Nascimento</label>
                                             <input type="text" class="form-control" formControlName="dateBirth"
                                                 bsDatepicker
@@ -72,8 +72,8 @@
                                         </div>
 
                                         <!--Button create Employee-->
-                                        <div class="col-2 align-self-center pt-4 mt-2">
-                                            <button class="btn btn-blue ml-3" (click)="createEmployee()"
+                                        <div class="col-12 col-md-2 align-self-center mt-2 pt-4 mt-md-2">
+                                            <button class="btn btn-blue ml-md-3" (click)="createEmployee()"
                                                 [disabled]="!form.valid">
                                                 <span class="text-white text-bold mx-3">Cadastrar</span>
                                             </button>
@@ -97,7 +97,7 @@
                 <!--Start list Group-->
                 <div class="list-group mt-4">
                     <!--Labels-->
-                    <div class="list-group-item first-item text-left text-bold d-md-block">
+                    <div class="list-group-item first-item text-left text-bold d-md-block px-0 px-md-0">
                         <div class="row ml-0">
 
                             <!--Name-->
@@ -106,27 +106,27 @@
                             </div>
 
                             <!--Email-->
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-3  mt-2 mt-md-0">
                                 Email
                             </div>
 
                             <!--Cpf-->
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-2  mt-2 mt-md-0">
                                 CPF
                             </div>
 
                             <!--Salary-->
-                            <div class="col-12 col-md-1">
+                            <div class="col-12 col-md-1  mt-2 mt-md-0">
                                 Salario
                             </div>
 
                             <!--DateBirth-->
-                            <div class="col-12 col-md-2 text-nowrap">
+                            <div class="col-12 col-md-2 text-nowrap  mt-2 mt-md-0">
                                 Data de Nascimento
                             </div>
 
                             <!--Actions-->
-                            <div class="col-12 col-md-1 text-nowrap">
+                            <div class="col-12 col-md-1 text-nowrap  mt-2 mt-md-0">
                                 Ações
                             </div>
 
@@ -135,8 +135,8 @@
                     </div>
 
                     <!--Content-->
-                    <div *ngFor="let employee of employees" class="list-group-item list-group-item-action text-left">
-                        <div class="row ml-0">
+                    <div *ngFor="let employee of employees" class="list-group-item list-group-item-action text-left px-0 px-md-0">
+                        <div class="row ml-0 ">
 
                             <!--Name-->
                             <div class="col-12 col-md-3">
@@ -144,27 +144,27 @@
                             </div>
 
                             <!--Email-->
-                            <div class="col-12 col-md-3">
+                            <div class="col-12 col-md-3 mt-1 mt-md-0">
                                 {{employee.email}}
                             </div>
 
                             <!--Cpf-->
-                            <div class="col-12 col-md-2">
+                            <div class="col-12 col-md-2 mt-1 mt-md-0">
                                 {{employee.cpf}}
                             </div>
 
                             <!--Salary-->
-                            <div class="col-12 col-md-1">
-                                {{employee.salary}}
+                            <div class="col-12 col-md-1 mt-1 mt-md-0">
+                                R${{employee.salary}}
                             </div>
 
                             <!--DateBirth-->
-                            <div class="col-12 col-md-2 text-nowrap">
+                            <div class="col-12 col-md-2 text-nowrap mt-1 mt-md-0">
                                 {{employee.dateBirth}}
                             </div>
 
                             <!--Actions-->
-                            <div class="col-12 col-md-1 align-self-center pr-0">
+                            <div class="col-12 col-md-1 align-self-center mt-2 mt-md-0 pl-md-2">
 
                                 <button class="btn circle-black mr-2" type="button"
                                     (click)="openModalEditEmployee(employee)">

@@ -95,7 +95,7 @@ export class CadastroComponent implements OnInit {
   deleteEmployee(employee: Employee) 
   {
     Swal.fire({
-      text: `Deseja mesmo Deletar o colaborador  ${employee.nome}?`,
+      text: `Deseja mesmo Deletar o colaborador ${employee.nome}?`,
       icon:"warning",
       confirmButtonColor: "#f05050",
       confirmButtonText: "Deletar Colaborador",
@@ -109,17 +109,17 @@ export class CadastroComponent implements OnInit {
       {
         this.cadastroService.delete(employee._id).subscribe(
           (response) => {
+            let find = this.employees.find(x => x._id == employee._id);
+            let index = this.employees.indexOf(find);
+            this.employees.splice(index,1);
             Swal.fire('Success', 'Colaborador Excluido com Sucesso', 'success');
-
             
           },
           (error) => {
             Swal.fire('Error', 'Não foi possível Excluir o Colaborador', 'error');
           }
         );
-        this.getEmployee();
       }
-      this.getEmployee();
     });
 
   }
