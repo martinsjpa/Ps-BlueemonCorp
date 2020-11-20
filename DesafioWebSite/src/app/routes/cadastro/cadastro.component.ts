@@ -96,17 +96,18 @@ export class CadastroComponent implements OnInit {
         Swal.fire('Error', 'Não foi possível Cadastrar o Colaborador', 'error');
       }
     );
+
+    this.form.reset();
   }
   /**Envia para a Api o colaborador que foi deletado */ 
   deleteEmployee(employee: Employee) 
   {
     Swal.fire({
-      text: `Deseja mesmo Deletar o colaborador ${employee.nome}?`,
+      text: `Deseja deletar o colaborador ${employee.nome}?`,
       icon:"warning",
       confirmButtonColor: "#f05050",
       confirmButtonText: "Deletar Colaborador",
       cancelButtonColor: "Cancelar",
-      iconHtml:'<i class="fas fa-trash"',
       iconColor: "#f05050",
       showCancelButton: true,
     }).then((result) =>
@@ -115,6 +116,7 @@ export class CadastroComponent implements OnInit {
       {
         this.cadastroService.delete(employee._id).subscribe(
           (response) => {
+            /*Exclui da lista de employees */
             let find = this.employees.find(x => x._id == employee._id);
             let index = this.employees.indexOf(find);
             this.employees.splice(index,1);
