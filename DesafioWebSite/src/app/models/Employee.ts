@@ -1,9 +1,9 @@
 export class Employee
 {
     _id: string;
-    nome: string;
+    name: string;
     email:string;
     cpf:string;
-    dateBirth:string;
+    birthDate:string;
     salary: number;
 }

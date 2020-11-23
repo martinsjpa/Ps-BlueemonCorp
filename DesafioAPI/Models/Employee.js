@@ -8,10 +8,10 @@ const ObjectId = Schema.ObjectId;
 /* Modelo que será utilizado para a criação da tabela no MongoDB */
 const Employee = new mongoose.Schema({
     id:ObjectId,
-    nome:String,
+    name:String,
     cpf:String,
     email:String,
-    dateBirth:String,
+    birthDate:String,
     salary:Number
 });
 

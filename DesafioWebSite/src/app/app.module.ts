@@ -11,6 +11,8 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import {NgxPaginationModule} from 'ngx-pagination';
+import {routes} from './routes/routes';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BsDatepickerModule.forRoot(),
     HttpClientModule,
     TooltipModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
+    RouterModule.forRoot(routes),
     
   ],
   providers: [CadastroService, BsModalService],

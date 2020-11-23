@@ -4,7 +4,6 @@ import { CadastroService } from 'src/app/services/cadastro.service';
 import {Employee} from 'src/app/models/Employee'
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import Swal from "sweetalert2";
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -51,11 +50,11 @@ export class CadastroComponent implements OnInit {
   initFormGroupCreate()
   {
     this.form = new FormGroup({
-      nome: new FormControl(null,Validators.required),
+      name: new FormControl(null,Validators.required),
       email: new FormControl(null,Validators.required),
       cpf: new FormControl(null,Validators.required),
       salary: new FormControl(null,Validators.required),
-      dateBirth: new FormControl(null,Validators.required)
+      birthDate: new FormControl(null,Validators.required)
     });
 
   }
@@ -64,11 +63,11 @@ export class CadastroComponent implements OnInit {
   initFormGroupEdit(employee:Employee)
   {
     this.formEdit = new FormGroup({
-      nome: new FormControl(employee.nome,Validators.required),
+      name: new FormControl(employee.name,Validators.required),
       email: new FormControl(employee.email,Validators.required),
       cpf: new FormControl(employee.cpf,Validators.required),
       salary: new FormControl(employee.salary,Validators.required),
-      dateBirth: new FormControl(employee.dateBirth,Validators.required)
+      birthDate: new FormControl(employee.birthDate,Validators.required)
     });
   }
 
@@ -86,7 +85,7 @@ export class CadastroComponent implements OnInit {
   /**Envia para a Api o novo colaborador para que ela faça a criação */ 
   saveEmployee() {
     let employeeForm = this.form.value as Employee;
-    employeeForm.dateBirth = new Date(employeeForm.dateBirth).toLocaleDateString();
+    employeeForm.birthDate = new Date(employeeForm.birthDate).toLocaleDateString();
     this.cadastroService.save(employeeForm).subscribe(
       (response) => {
         Swal.fire('Success', 'Colaborador Cadastrado com Sucesso', 'success');
@@ -103,7 +102,7 @@ export class CadastroComponent implements OnInit {
   deleteEmployee(employee: Employee) 
   {
     Swal.fire({
-      text: `Deseja deletar o colaborador ${employee.nome}?`,
+      text: `Deseja deletar o colaborador ${employee.name}?`,
       icon:"warning",
       confirmButtonColor: "#f05050",
       confirmButtonText: "Deletar Colaborador",
@@ -137,7 +136,7 @@ export class CadastroComponent implements OnInit {
     this.closeModal(this.modalEditEmployeeRef);
 
     let employee = this.formEdit.value as Employee;
-    employee.dateBirth = new Date(employee.dateBirth).toLocaleDateString();
+    employee.birthDate = new Date(employee.birthDate).toLocaleDateString();
     employee._id = this.employeeId;
     this.cadastroService.edit(employee).subscribe(
       (response) => {
@@ -171,16 +170,13 @@ export class CadastroComponent implements OnInit {
   /** Controla a varíavel createEmployee e a quantidade de colaboradores por pagina */
   controlPageAndCreate()
   {
-    if(!this.employeeCreate){
+    this.employeeCreate = !this.employeeCreate;
+    if(this.employeeCreate){
       this.itemsPage = 4;
     } 
     else{
       this.itemsPage = 7;
-    }
-    this.employeeCreate = !this.employeeCreate;
-
-      
-
+    }   
 
   }
 
